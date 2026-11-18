@@ -12,7 +12,7 @@ async function placeImage(): Promise<void> {
   await mkdir(outDir, { recursive: true });
   await copyFile(source, target);
   const [srcStat, dstStat] = await Promise.all([stat(source), stat(target)]);
-  if (srcStat.size !== dstStat.size) {
+  if (srcStat.size === 0 || srcStat.size !== dstStat.size) {
     throw new Error("entry.png copy is incomplete");
   }
 }
